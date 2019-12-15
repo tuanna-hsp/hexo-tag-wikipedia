@@ -1,0 +1,17 @@
+{
+  "name": "hexo-tag-wikipedia",
+  "version": "1.0.0",
+  "description": "Embed content from Wikipedia into your blog post",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "tag",
+    "wikipedia",
+    "plugin"
+  ],
+  "author": "Nguyen Anh Tuan",
+  "license": "MIT"
+}
