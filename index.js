@@ -2,7 +2,7 @@
 function buildArgsHash(args) {
   let argsHash = {};
   args.forEach(arg => {
-    const params = arg.split('=');
+    const params = arg.split(':');
     argsHash[params[0]] = params[1];
   });
 
@@ -12,13 +12,14 @@ function buildArgsHash(args) {
 function generateWikipediaTagHtml(args, content){
   const argsHash = buildArgsHash(args);
   const title = argsHash['title'];
+
   const lang = argsHash['lang'] !== undefined ? argsHash['lang'] : 'en';
-  const showReadMore = argsHash['readMore'] === 'true';
+  const baseUrl = `https://${lang}.wikipedia.org`;
+
+  const sentenceParam = argsHash['sentences'] !== undefined ? `&exsentences=${argsHash['sentences']}` : ''
+  const url = `${baseUrl}/w/api.php?action=query&origin=*&prop=extracts${sentenceParam}&format=json&exintro=&titles=${title}`;
 
   const tagId = `wiki-${title}`;
-  const baseUrl = `https://${lang}.wikipedia.org`;
-  const url = `${baseUrl}/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=${title}`;
-
   const embeddedScript = `
     window.addEventListener('load', function() {
       $.getJSON('${url}', function(result) {
@@ -30,8 +31,8 @@ function generateWikipediaTagHtml(args, content){
     });
   `;
   let contentText = `<script>${embeddedScript}</script>`;
-  if (showReadMore) {
-    contentText += `<p><a href="${baseUrl}/wiki/${title}">More on Wikipedia</a></p>`;
+  if (argsHash['wikiButton'] === 'true') {
+    contentText += `<p><a href="${baseUrl}/wiki/${title}">Wikipedia</a></p>`;
   }
 
   return `<blockquote id='${tagId}'>${contentText}</blockquote>`;
