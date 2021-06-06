@@ -7,6 +7,11 @@ Currently, it only supports showing Wiki extracts (the first section before the 
 npm i hexo-tag-wikipedia --save
 ```
 
+or
+```bash
+yarn add hexo-tag-wikipedia
+```
+
 ## Usage
 #### Example
 ```

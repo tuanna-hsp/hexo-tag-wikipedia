@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-wikipedia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Embed content from Wikipedia into your blog post",
   "main": "index.js",
   "scripts": {

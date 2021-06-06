@@ -19,7 +19,7 @@ function generateWikipediaTagHtml(args, content){
   const sentenceParam = argsHash['sentences'] !== undefined ? `&exsentences=${argsHash['sentences']}` : ''
   const url = `${baseUrl}/w/api.php?action=query&origin=*&prop=extracts${sentenceParam}&format=json&exintro=&titles=${title}`;
 
-  const tagId = `wiki-${title}`;
+  const tagId = Math.round(Math.random() * 100000);
   const embeddedScript = `
     window.addEventListener('load', function() {
       $.getJSON('${url}', function(result) {
